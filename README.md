@@ -3,13 +3,16 @@
 1. Clone Project
 
 ```
-git clone https://github.com/ScofieldNguyen/vimIDE ~/.vim
+git clone https://github.com/ScofieldNguyen/vimIDE ~/vimIDE
 ```
 
 2. Create symbolic links
 
 ```
-ln -s ~/.vim/.vimrc ~/.vimrc
+cd ~/vimIDE
+rm -rf ~/.vim
+ln -s .vim ~/.vim
+ln -s .vim/.vimrc ~/.vimrc
 ```
 
 3. Pull plugins
