@@ -9,10 +9,11 @@ git clone https://github.com/ScofieldNguyen/vimIDE ~/vimIDE
 2. Create symbolic links
 
 ```
-cd ~/vimIDE
 rm -rf ~/.vim
+rm -rf ~/.vimrc
+cd ~/vimIDE
 ln -s .vim ~/.vim
-ln -s .vim/.vimrc ~/.vimrc
+ln -s .vimrc ~/.vimrc
 ```
 
 3. Pull plugins
