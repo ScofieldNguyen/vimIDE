@@ -87,7 +87,8 @@ augroup GetGitBranch
   autocmd VimEnter,WinEnter,BufEnter * call StatuslineGitBranch()
 augroup END
 
-
+" Close buffer
+nmap ,d :b#<bar>bd#<CR>
 
 "" ======= PLUGIN CONFIG ============
 "" NerdTree
