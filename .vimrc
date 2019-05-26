@@ -18,6 +18,7 @@ set ignorecase	" Always case-insensitive
 set incsearch   " Move cursor to matching word
  
 set autoindent	" Auto-indent new lines
+set smartindent " Smartindent new lines
 set expandtab	" Use spaces instead of tabs
 set shiftwidth=2	" Number of auto-indent spaces
 set softtabstop=2	" Number of spaces per Tab
@@ -37,9 +38,26 @@ map <C-l> <C-W>l
 "" Color-scheme
 set background=dark
 " colorscheme solarized
+colorscheme gruvbox
 
 "" Leader key
 let mapleader = ","
+
+"" Save when losing focus
+au FocusLost * :wa
+
+"" user mouse
+set mouse=n
+
+"" Resize split when window is resized
+au VimResized * exe "normal! \<C-W>="
+
+"" No swap file
+set noswapfile
+
+"" Window resizing
+nnoremap <C-9> 5<C-w>>
+nnoremap <C-0> 5<C-w><
 
 "" Completion
 filetype plugin on
