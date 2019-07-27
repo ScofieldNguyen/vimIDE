@@ -12,8 +12,8 @@ git clone https://github.com/ScofieldNguyen/vimIDE ~/vimIDE
 rm -rf ~/.vim
 rm -rf ~/.vimrc
 cd ~/vimIDE
-ln -s .vim ~/.vim
-ln -s .vimrc ~/.vimrc
+ln -s ~/vimIDE/.vim ~/.vim
+ln -s ~/vimIDE/.vimrc ~/.vimrc
 ```
 
 3. Pull plugins
