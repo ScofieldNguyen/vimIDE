@@ -1,0 +1,5 @@
+# Ag ignore files
+node_modules/*
+ios/*
+android/*
+__test__/*

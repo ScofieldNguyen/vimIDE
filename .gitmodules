@@ -58,3 +58,6 @@
 [submodule ".vim/bundle/vim-textobj-reactprop"]
 	path = .vim/bundle/vim-textobj-reactprop
 	url = https://github.com/justinj/vim-textobj-reactprop
+[submodule ".vim/bundle/tagbar"]
+	path = .vim/bundle/tagbar
+	url = https://github.com/majutsushi/tagbar

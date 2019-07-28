@@ -141,3 +141,14 @@ let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js'
 " indentLine
 let g:indentLine_char = '┆'
 let g:indentLine_setColors = 239
+
+" Tagbar (outline)
+nmap <c-t> :TagbarToggle<CR>
+
+" Ack.vim
+
+" Using ag if possible
+let g:ackprg = 'ag --nogroup --nocolor --column --path-to-ignore ~/.ignore'
+
+cnoreabbrev Ack Ack!
+nnoremap <Leader>a :Ack!<Space>
