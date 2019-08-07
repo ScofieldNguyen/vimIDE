@@ -22,6 +22,7 @@ set smartindent " Smartindent new lines
 set expandtab	" Use spaces instead of tabs
 set shiftwidth=2	" Number of auto-indent spaces
 set softtabstop=2	" Number of spaces per Tab
+set mouse=a " Using mouse
  
 "" Advanced
 set ruler	" Show row and column ruler information
@@ -38,7 +39,7 @@ map <C-l> <C-W>l
 "" Color-scheme
 set background=dark
 " colorscheme solarized
-colorscheme gruvbox
+colorscheme onedark
 
 "" Leader key
 let mapleader = ","
@@ -152,3 +153,11 @@ let g:ackprg = 'ag --nogroup --nocolor --column --path-to-ignore ~/.ignore'
 
 cnoreabbrev Ack Ack!
 nnoremap <Leader>a :Ack!<Space>
+
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'javascript.jsx': ['eslint'],
+\   'typescript': ['tsserver', 'tslint'],
+\   'vue': ['eslint']
+\}
+

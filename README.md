@@ -52,3 +52,6 @@ git pull origin master
 ```
 git submodule foreach git pull orgin master
 ```
+
+8. Install matchit
+https://www.vim.org/scripts/script.php?script_id=39
