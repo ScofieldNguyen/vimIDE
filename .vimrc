@@ -3,6 +3,12 @@
 "" Pathogen
 execute pathogen#infect()
 
+let g:loaded_matchit = 1
+
+set nocompatible
+filetype plugin on
+runtime macros/matchit.vim
+
 "" General
 syntax on
 set hidden
@@ -249,6 +255,15 @@ nnoremap <Left> :bprev<CR>
 
 " Auto close tag
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js'
+
+" Auto close bracklet
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
 
 " indentLine
 let g:indentLine_char = '┆'
