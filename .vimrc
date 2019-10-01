@@ -3,8 +3,6 @@
 "" Pathogen
 execute pathogen#infect()
 
-let g:loaded_matchit = 1
-
 set nocompatible
 filetype plugin on
 runtime macros/matchit.vim
