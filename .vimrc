@@ -166,9 +166,9 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 "" Color-scheme
-set background=dark
 " colorscheme solarized
 colorscheme onedark
+hi Normal guibg=NONE ctermbg=NONE
 
 "" Leader key
 let mapleader = ","
