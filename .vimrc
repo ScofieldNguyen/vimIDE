@@ -3,8 +3,6 @@
 "" Pathogen
 execute pathogen#infect()
 
-let g:loaded_matchit = 1
-
 set nocompatible
 filetype plugin on
 runtime macros/matchit.vim
@@ -166,9 +164,9 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 "" Color-scheme
-set background=dark
 " colorscheme solarized
 colorscheme onedark
+hi Normal guibg=NONE ctermbg=NONE
 
 "" Leader key
 let mapleader = ","
