@@ -26,6 +26,7 @@ set smartindent " Smartindent new lines
 set expandtab	" Use spaces instead of tabs
 set shiftwidth=2	" Number of auto-indent spaces
 set softtabstop=2	" Number of spaces per Tab
+set ic
 
 " ====== COC-Config ============
 set hidden " if hidden is not set, TextEdit might fail.
@@ -165,8 +166,9 @@ map <C-l> <C-W>l
 
 "" Color-scheme
 " colorscheme solarized
-colorscheme onedark
-hi Normal guibg=NONE ctermbg=NONE
+" colorscheme onedark
+colorscheme gruvbox
+" hi Normal guibg=NONE ctermbg=NONE
 
 "" Leader key
 let mapleader = ","
@@ -223,6 +225,9 @@ augroup END
 
 " Close buffer
 nmap ,d :b#<bar>bd#<CR>
+
+" Close all buffer except this one
+map ,D :BufOnly<CR>
 
 "" ======= PLUGIN CONFIG ============
 "" NerdTree
