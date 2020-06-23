@@ -1,4 +1,6 @@
 {
-  "suggest.autoTrigger": false,
-  "revealOutputChannelOn": "info",
+  "suggest.autoTrigger": "none",
+  "suggest.noselect": true,
+  "suggest.snippetIndicator": "...",
+  "revealOutputChannelOn": "info"
 }

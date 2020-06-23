@@ -1,4 +1,8 @@
 "" ======= VIMCONFIG ============
+call plug#begin('~/.vim/plugged')
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'thosakwe/vim-flutter'
+call plug#end()
 
 "" Pathogen
 execute pathogen#infect()
@@ -27,6 +31,7 @@ set expandtab	" Use spaces instead of tabs
 set shiftwidth=2	" Number of auto-indent spaces
 set softtabstop=2	" Number of spaces per Tab
 set ic
+set guicursor= " Turn off cursor shaping
 
 " ====== COC-Config ============
 set hidden " if hidden is not set, TextEdit might fail.
@@ -92,7 +97,7 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
+nmap <leader>rn call CocAction('document.renameCurrentWord')
 
 " Remap for format selected region
 xmap <leader>f  <Plug>(coc-format-selected)
@@ -130,7 +135,7 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Using CocList
 " Show all diagnostics
@@ -166,9 +171,9 @@ map <C-l> <C-W>l
 
 "" Color-scheme
 " colorscheme solarized
-" colorscheme onedark
-colorscheme gruvbox
-" hi Normal guibg=NONE ctermbg=NONE
+colorscheme onedark
+" colorscheme slate
+hi Normal guibg=NONE ctermbg=NONE
 
 "" Leader key
 let mapleader = ","
@@ -195,33 +200,33 @@ nnoremap <C-0> 5<C-w><
 let g:ackprg = 'ag --nogroup --nocolor --column' " Using Ag as ack search tool
 
 " Status line
-set laststatus=2
-set statusline+=<
-set statusline+=%{b:gitbranch}
-set statusline+=>
-set statusline+= 
-set statusline+=%F
-set statusline+=%=
-set statusline+=%l
-set statusline+=/
-set statusline+=%L
+" set laststatus=2
+" set statusline+=<
+" " set statusline+=%{b:gitbranch}
+" set statusline+=>
+" set statusline+= 
+" set statusline+=%F
+" set statusline+=%=
+" set statusline+=%l
+" set statusline+=/
+" set statusline+=%L
 
-function! StatuslineGitBranch()
-  let b:gitbranch=""
-  if &modifiable
-    lcd %:p:h
-    let l:gitrevparse=system("git rev-parse --abbrev-ref HEAD")
-    lcd -
-    if l:gitrevparse!~"fatal: not a git repository"
-      let b:gitbranch="(".substitute(l:gitrevparse, '\n', '', 'g').") "
-    endif
-  endif
-endfunction
+" function! StatuslineGitBranch()
+"   let b:gitbranch=""
+"   if &modifiable
+"     lcd %:p:h
+"     let l:gitrevparse=system("git rev-parse --abbrev-ref HEAD")
+"     lcd -
+"     if l:gitrevparse!~"fatal: not a git repository"
+"       let b:gitbranch="(".substitute(l:gitrevparse, '\n', '', 'g').") "
+"     endif
+"   endif
+" endfunction
     
-augroup GetGitBranch
-  autocmd!
-  autocmd VimEnter,WinEnter,BufEnter * call StatuslineGitBranch()
-augroup END
+" augroup GetGitBranch
+"   autocmd!
+"   autocmd VimEnter,WinEnter,BufEnter * call StatuslineGitBranch()
+" augroup END
 
 " Close buffer
 nmap ,d :b#<bar>bd#<CR>
@@ -238,19 +243,15 @@ let g:NERDTreeNodeDelimiter = "\u00a0"
 let g:ctrlp_map = '<c-p>'
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 :helptags ~/.vim/bundle/ctrlp.vim/doc
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 "" Prettier
 let g:prettier#exec_cmd_async = 1
 let g:prettier#quickfix_enabled = 0
-let g:prettier#autoformat = 0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
-let g:prettier#config#tab_width = 2
-let g:prettier#config#semi = 'false'
-let g:prettier#config#single_quote = 'true'
-let g:prettier#config#arrow_parens = 'always'
-let g:prettier#config#trailing_comma = 'all'
-let g:prettier#config#jsx_bracket_same_line = 'false'
+let g:prettier#autoformat_config_present = 1
+let g:prettier#autoformat_config_files = ['.prettierc.js', '.prettierc.json']
 
 " Buffers line
 nnoremap <Right> :bnext<CR>
@@ -290,3 +291,23 @@ let g:ale_linters = {
 \   'vue': ['eslint']
 \}
 
+" <C-r> to run NPM commands
+map <leader>r yi":!npm run <C-r>"<CR>
+
+" Flutter IDE
+let g:dart_style_guide = 2
+let g:dart_format_on_save = 1
+
+" Enable Flutter menu
+call FlutterMenu()
+nnoremap <leader>fa :FlutterRun<cr>
+nnoremap <leader>fq :FlutterQuit<cr>
+nnoremap <leader>fr :FlutterHotReload<cr>
+nnoremap <leader>fR :FlutterHotRestart<cr>
+nnoremap <leader>fD :FlutterVisualDebug<cr>
+
+" Floaterm shorcuts
+let g:floaterm_keymap_new    = '<F8>'
+let g:floaterm_keymap_prev   = '<F7>'
+let g:floaterm_keymap_next   = '<F9>'
+let g:floaterm_keymap_toggle = '<F12>'
