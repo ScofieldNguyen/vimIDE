@@ -1,11 +1,36 @@
-"" ======= VIMCONFIG ============
 call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'thosakwe/vim-flutter'
+Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+Plug 'norcalli/nvim-colorizer.lua'
+Plug 'mileszs/ack.vim'
+Plug 'kien/ctrlp.vim'
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'morhetz/gruvbox'
+Plug 'preservim/nerdtree'
+Plug 'preservim/tagbar'
+Plug 'leafgarland/typescript-vim'
+Plug 'ap/vim-buftabline'
+Plug 'alvan/vim-closetag'
+Plug 'tpope/vim-commentary'
+Plug 'suy/vim-context-commentstring'
+Plug 'voldikss/vim-floaterm'
+Plug 'tpope/vim-fugitive'
+Plug 'pangloss/vim-javascript'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'mxw/vim-jsx'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'andymass/vim-matchup'
+Plug 'prettier/vim-prettier'
+Plug 'justinmk/vim-sneak'
+Plug 'tpope/vim-surround'
+Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
-"" Pathogen
-execute pathogen#infect()
+" setup color
+set termguicolors
+" lua require'plug-colorizer'
 
 set nocompatible
 filetype plugin on
@@ -31,7 +56,7 @@ set expandtab	" Use spaces instead of tabs
 set shiftwidth=2	" Number of auto-indent spaces
 set softtabstop=2	" Number of spaces per Tab
 set ic
-set guicursor= " Turn off cursor shaping
+set encoding=utf-8
 
 " ====== COC-Config ============
 set hidden " if hidden is not set, TextEdit might fail.
@@ -96,9 +121,6 @@ endfunction
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" Remap for rename current word
-nmap <leader>rn call CocAction('document.renameCurrentWord')
-
 " Remap for format selected region
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
@@ -111,12 +133,15 @@ augroup mygroup
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
+nmap <leader>c :CocCommand<CR>
+
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 " Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
+nmap <leader>do  <Plug>(coc-codeaction)
+nmap <leader>rn  <Plug>(coc-rename)
 " Fix autofix problem of current line
 nmap <leader>qf  <Plug>(coc-fix-current)
 
@@ -171,9 +196,10 @@ map <C-l> <C-W>l
 
 "" Color-scheme
 " colorscheme solarized
-colorscheme onedark
+colorscheme gruvbox
 " colorscheme slate
-hi Normal guibg=NONE ctermbg=NONE
+" colorscheme peachpuff
+" hi Normal guibg=NONE ctermbg=NONE
 
 "" Leader key
 let mapleader = ","
@@ -294,20 +320,28 @@ let g:ale_linters = {
 " <C-r> to run NPM commands
 map <leader>r yi":!npm run <C-r>"<CR>
 
-" Flutter IDE
-let g:dart_style_guide = 2
-let g:dart_format_on_save = 1
+" Flutter config
+let dart_html_in_string=v:true "Enable HTML syntax highlighting inside Dart strings 
+let g:dart_style_guide = 2 "2 space indent
+let g:dart_format_on_save = 1 "Format on save
+let g:flutter_hot_reload_on_save = 1 "Hot reload on save
 
-" Enable Flutter menu
-call FlutterMenu()
+" Flutter shorcut
 nnoremap <leader>fa :FlutterRun<cr>
 nnoremap <leader>fq :FlutterQuit<cr>
 nnoremap <leader>fr :FlutterHotReload<cr>
 nnoremap <leader>fR :FlutterHotRestart<cr>
 nnoremap <leader>fD :FlutterVisualDebug<cr>
 
-" Floaterm shorcuts
-let g:floaterm_keymap_new    = '<F8>'
-let g:floaterm_keymap_prev   = '<F7>'
-let g:floaterm_keymap_next   = '<F9>'
-let g:floaterm_keymap_toggle = '<F12>'
+" RVim
+nmap , <Plug>RDSendLine
+vmap , <Plug>RDSendSelection
+vmap ,e <Plug>RESendSelection
+
+" Kite
+" All the languages Kite supports
+let g:kite_supported_languages = ['*']
+
+" Reload syntax highlight
+noremap <F12> <Esc>:syntax sync fromstart<CR>
+inoremap <F12> <C-o>:syntax sync fromstart<CR>
