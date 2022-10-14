@@ -257,10 +257,10 @@ let g:ackprg = 'ag --nogroup --nocolor --column' " Using Ag as ack search tool
 " augroup END
 
 " Close buffer
-nmap ,d :b#<bar>bd#<CR>
+nmap ,w :b#<bar>bd#<CR>
 
 " Close all buffer except this one
-map ,D :BufOnly<CR>
+map ,W :BufOnly<CR>
 
 "" ======= PLUGIN CONFIG ============
 "" NerdTree
@@ -347,6 +347,3 @@ let g:kite_supported_languages = ['*']
 " Reload syntax highlight
 noremap <F12> <Esc>:syntax sync fromstart<CR>
 inoremap <F12> <C-o>:syntax sync fromstart<CR>
-
-" CocAction
-nnoremap <leader>m :CocAction<CR>
