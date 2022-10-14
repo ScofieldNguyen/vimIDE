@@ -14,11 +14,12 @@ Plug 'leafgarland/typescript-vim'
 Plug 'ap/vim-buftabline'
 Plug 'alvan/vim-closetag'
 Plug 'tpope/vim-commentary'
-Plug 'suy/vim-context-commentstring'
+Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 Plug 'voldikss/vim-floaterm'
 Plug 'tpope/vim-fugitive'
 Plug 'pangloss/vim-javascript'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'mxw/vim-jsx'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'andymass/vim-matchup'
@@ -26,6 +27,7 @@ Plug 'prettier/vim-prettier'
 Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-surround'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'github/copilot.vim'
 call plug#end()
 
 " setup color
@@ -345,3 +347,6 @@ let g:kite_supported_languages = ['*']
 " Reload syntax highlight
 noremap <F12> <Esc>:syntax sync fromstart<CR>
 inoremap <F12> <C-o>:syntax sync fromstart<CR>
+
+" CocAction
+nnoremap <leader>m :CocAction<CR>
