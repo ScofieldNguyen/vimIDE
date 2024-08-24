@@ -270,7 +270,6 @@ let g:NERDTreeNodeDelimiter = "\u00a0"
 "" CtrlP
 let g:ctrlp_map = '<c-p>'
 set runtimepath^=~/.vim/bundle/ctrlp.vim
-:helptags ~/.vim/bundle/ctrlp.vim/doc
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 "" Prettier
